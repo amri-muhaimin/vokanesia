@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="h4 fw-semibold mb-3">Companies</h1>
+<div class="row g-3">
+  {% for c in companies %}
+  <div class="col-md-6">
+    <div class="card rounded-4 h-100">
+      <div class="card-body">
+        <div class="fw-semibold">{{ c.name }}</div>
+        <div class="text-secondary small">{{ c.sector or "—" }} • {{ c.city or "—" }}</div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

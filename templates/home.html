@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="p-4 p-md-5 rounded-4 bg-light border">
+  <h1 class="display-6 fw-semibold mb-2">Vokanesia</h1>
+  <p class="mb-3">
+    An English web-based platform designed for Indonesia that connects <b>students</b>, <b>vocational schools</b>, and <b>industries</b>.
+    This local demo includes dummy data for curriculum targets, industry needs, student profiles, and matching.
+  </p>
+  <div class="row g-3">
+    <div class="col-6 col-md-2"><div class="stat-card"><div class="stat-num">{{ stats.schools }}</div><div class="stat-label">Schools</div></div></div>
+    <div class="col-6 col-md-2"><div class="stat-card"><div class="stat-num">{{ stats.companies }}</div><div class="stat-label">Companies</div></div></div>
+    <div class="col-6 col-md-2"><div class="stat-card"><div class="stat-num">{{ stats.students }}</div><div class="stat-label">Students</div></div></div>
+    <div class="col-6 col-md-2"><div class="stat-card"><div class="stat-num">{{ stats.roles }}</div><div class="stat-label">Roles</div></div></div>
+    <div class="col-6 col-md-2"><div class="stat-card"><div class="stat-num">{{ stats.competencies }}</div><div class="stat-label">Competencies</div></div></div>
+  </div>
+  <hr class="my-4">
+  <div class="d-flex flex-wrap gap-2">
+    <a class="btn btn-primary" href="{{ url_for('roles') }}">Browse roles</a>
+    <a class="btn btn-outline-primary" href="{{ url_for('students') }}">Browse students</a>
+    <a class="btn btn-outline-secondary" href="{{ url_for('schools') }}">See curriculum</a>
+  </div>
+</div>
+
+<div class="row g-3 mt-4">
+  <div class="col-md-6">
+    <div class="card rounded-4 h-100">
+      <div class="card-body">
+        <h2 class="h5 fw-semibold">How matching works (demo)</h2>
+        <p class="mb-2">Roles define <b>required</b> and <b>preferred</b> competencies with minimum levels (1–5).</p>
+        <p class="mb-0">Student profiles include skills (optionally verified). The matching page ranks by an explainable score and shows gaps.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card rounded-4 h-100">
+      <div class="card-body">
+        <h2 class="h5 fw-semibold">Next features you can add</h2>
+        <ul class="mb-0">
+          <li>Login + roles (admin/school/company/student)</li>
+          <li>Approval workflow for applications</li>
+          <li>Internship logbook + mentor assessment</li>
+          <li>Curriculum gap analytics dashboard</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

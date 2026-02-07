@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="alert alert-warning rounded-4">
+  <h1 class="h5 mb-1">{{ title or "Not found" }}</h1>
+  <div class="small">The item you requested does not exist in the dummy dataset.</div>
+</div>
+<a href="{{ url_for('home') }}" class="btn btn-outline-secondary">Back to home</a>
+{% endblock %}

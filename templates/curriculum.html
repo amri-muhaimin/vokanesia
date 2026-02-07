@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
+  <div>
+    <h1 class="h4 fw-semibold mb-1">{{ school.name }}</h1>
+    <div class="text-secondary small">{{ school.city or "—" }} • Curriculum targets by program (level 1–5)</div>
+  </div>
+  <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('schools') }}">Back</a>
+</div>
+
+{% for program, rows in grouped.items() %}
+  <div class="card rounded-4 mb-3">
+    <div class="card-header bg-white">
+      <div class="fw-semibold">{{ program }}</div>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table mb-0 align-middle">
+          <thead>
+            <tr>
+              <th style="width: 30%">Category</th>
+              <th>Competency</th>
+              <th style="width: 15%">Target level</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in rows %}
+            <tr>
+              <td class="text-secondary">{{ r.category or "—" }}</td>
+              <td>{{ r.competency_name }}</td>
+              <td><span class="badge text-bg-secondary">L{{ r.target_level }}</span></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}

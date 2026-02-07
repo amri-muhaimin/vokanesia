@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
+  <div>
+    <h1 class="h4 fw-semibold mb-1">{{ student.name }}</h1>
+    <div class="text-secondary small">{{ student.school_name }} • {{ student.program }} • {{ student.city or "—" }} • Availability: {{ student.availability or "—" }}</div>
+  </div>
+  <div class="d-flex gap-2">
+    <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('students') }}">Back</a>
+    <a class="btn btn-primary btn-sm" href="{{ url_for('match_student', student_id=student.id) }}">Match roles</a>
+  </div>
+</div>
+
+<div class="card rounded-4 mb-3">
+  <div class="card-body">
+    <div class="fw-semibold mb-1">About</div>
+    <div class="text-secondary">{{ student.about or "—" }}</div>
+  </div>
+</div>
+
+<div class="card rounded-4 mb-3">
+  <div class="card-header bg-white">
+    <div class="fw-semibold">Skills (level 1–5)</div>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table mb-0 align-middle">
+        <thead>
+          <tr>
+            <th style="width: 30%">Category</th>
+            <th>Competency</th>
+            <th style="width: 15%">Level</th>
+            <th style="width: 15%">Verified</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for sk in skills %}
+          <tr>
+            <td class="text-secondary">{{ sk.category or "—" }}</td>
+            <td>{{ sk.competency_name }}</td>
+            <td><span class="badge text-bg-dark">L{{ sk.level }}</span></td>
+            <td>
+              {% if sk.verified == 1 %}
+                <span class="badge text-bg-success">Yes</span>
+              {% else %}
+                <span class="badge text-bg-secondary">No</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card rounded-4">
+  <div class="card-header bg-white">
+    <div class="fw-semibold">Evidence</div>
+  </div>
+  <div class="card-body">
+    {% if evidence|length == 0 %}
+      <div class="text-secondary">—</div>
+    {% else %}
+      <ul class="mb-0">
+        {% for e in evidence %}
+          <li>
+            <span class="badge text-bg-secondary me-2">{{ e.type or "Evidence" }}</span>
+            {{ e.title }}
+            {% if e.url %} — <a href="{{ e.url }}" target="_blank" rel="noopener">link</a>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
